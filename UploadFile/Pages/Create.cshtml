@@ -1,0 +1,44 @@
+﻿@page
+@model UploadFile.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Invoices</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Invoices.Number" class="control-label"></label>
+                <input asp-for="Invoices.Number" class="form-control" />
+                <span asp-validation-for="Invoices.Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoices.Date" class="control-label"></label>
+                <input asp-for="Invoices.Date" class="form-control" />
+                <span asp-validation-for="Invoices.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Invoices.Value" class="control-label"></label>
+                <input asp-for="Invoices.Value" class="form-control" />
+                <span asp-validation-for="Invoices.Value" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,31 @@
+﻿@page
+@model UploadFile.Pages.UploadModel
+@{
+}
+
+<h1>Upload Invoice</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Upload file</p>
+                    <input type="hidden" asp-for="@Model.ID" value="@Model.myID" />
+                    <input asp-for="file" class="form-control" accept=".pdf" type="file" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input class="btn btn-success" type="submit" value="Upload" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>

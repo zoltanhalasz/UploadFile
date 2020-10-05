@@ -1,0 +1,67 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<h1>Invoice List</h1>
+
+<p>
+    <a asp-page="Create">Create Invoice</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoices[0].Number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoices[0].Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Invoices[0].Value)
+            </th>
+            <th>
+                Upload
+            </th>
+            <th>Download</th>
+            <th>Delete attachment</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Invoices)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <a asp-page="Upload" asp-route-id="@item.Id">Upload Invoice</a>
+            </td>
+            <td>
+                @if (item.Attachment != null)
+                {
+                    <form asp-page-handler="Download" method="post" asp-route-id="@item.Id">
+                        <input type="submit" class="btn btn-dark" value="Download">
+                    </form>
+                }
+            </td>
+            <td>
+                @if (item.Attachment != null)
+                {
+                    <form asp-page-handler="Delete" method="post" asp-route-id="@item.Id">
+                        <input type="submit" class="btn btn-danger" value="Delete">
+                    </form>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
